@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div>
+    <div class="text-center">
+        <p>Login</p>
+    </div>
+
+    <form action="login/Login" method="post">
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input name="UserName" type="text" class="form-control" id="UserName" aria-describedby="emailHelp" placeholder="Inserir email">
+        </div>
+
+        <div class="form-group">
+            <label for="inputPassword">Senha</label>
+            <input name="Password" type="password" class="form-control" id="Password" placeholder="Senha">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+
+    <button class="btn btn-success mt-3">
+        <a class="text-decoration-none" style="color: inherit" href="/user/CreateUser">Me Cadastrar</a>
+    </button>
+
+    @if (ViewBag.TheResult == true)
+    {
+        <div class="mt-5 alert alert-success">
+            <strong>Login</strong> realizado com sucesso.
+        </div>
+    }
+    else if (ViewBag.TheResult == false)
+    {
+        <div class="mt-5 alert alert-danger">
+            <strong>Erro!</strong> Usuário não cadastrado.
+        </div>
+    }
+</div>

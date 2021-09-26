@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Transporter.Administration.Application\Transporter.Administration.Application.csproj" />
+    <ProjectReference Include="..\Transporter.Administration.Data\Transporter.Administration.Data.csproj" />
+    <ProjectReference Include="..\Transporter.Transport.Application\Transporter.Transport.Application.csproj" />
+    <ProjectReference Include="..\Transporter.Transport.Data\Transporter.Transport.Data.csproj" />
+    <ProjectReference Include="..\Transporter.Transport.Domain\Transporter.Transport.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

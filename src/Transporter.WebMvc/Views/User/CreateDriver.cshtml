@@ -1,0 +1,45 @@
+﻿@{
+}
+
+<div>
+    <div class="text-center">
+        <p>Cadastrar Motorista</p>
+    </div>
+
+    <form action="RegisterDriver" method="post">
+        <div class="form-group">
+            <label for="inputName">Nome</label>
+            <input name="Name" type="text" class="form-control" id="inputName" placeholder="Nome do motorista">
+        </div>
+
+        <div class="form-group">
+            <label for="inputBirthDate">Data de Aniversário</label>
+            <input name="BirthDate" type="date" class="form-control" id="inputBirthDate" placeholder="Data de Aniversário">
+        </div>
+
+        <div class="form-group">
+            <label for="inputCpf">CPF</label>
+            <input name="CPF" maxlength="11" type="text" class="form-control" id="inputCpf" placeholder="Cpf">
+        </div>
+
+        <div class="form-group">
+            <label for="inputAddress">Endereço</label>
+            <input name="Address" type="text" class="form-control" id="inputAddress" placeholder="Endereço">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Criar</button>
+    </form>
+
+    @if (ViewBag.TheResult == true)
+    {
+        <div class="mt-5 alert alert-success">
+            <strong>Motorista</strong> cadastrado com sucesso.
+        </div>
+    }
+    else if (ViewBag.TheResult == false)
+    {
+        <div class="mt-5 alert alert-danger">
+            <strong>Erro!</strong> @ViewBag.MsgResult
+        </div>
+    }
+</div>

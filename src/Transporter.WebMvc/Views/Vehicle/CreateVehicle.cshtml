@@ -1,0 +1,79 @@
+﻿@{
+}
+
+<div>
+    <div class="text-center">
+        <p>Cadastrar Veículo</p>
+    </div>
+
+    <form action="RegisterVehicle" method="post">
+        <div class="form-group">
+            <label for="inputVehicleType">Tipo do Veículo</label>
+            <div class="form-check" id="inputVehicleType">
+                <input name="VehicleType" value="1" class="form-check-input" type="radio" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Carro
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input name="VehicleType" value="2" class="form-check-input" type="radio" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Ônibus
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input name="VehicleType" value="3" class="form-check-input" type="radio" id="flexRadioDefault3" checked>
+                <label class="form-check-label" for="flexRadioDefault3">
+                    Van
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputLicensePlate">Placa</label>
+            <input name="LicensePlate" type="text" class="form-control" id="inputLicensePlate" placeholder="Placa do veículo">
+        </div>
+
+        <div class="form-group">
+            <label for="inputBrand">Marca</label>
+            <input name="Brand" type="text" class="form-control" id="inputBrand" placeholder="Marca">
+        </div>
+
+        <div class="form-group">
+            <label for="inputModel">Modelo</label>
+            <input name="Model" type="text" class="form-control" id="inputModel" placeholder="Modelo">
+        </div>
+
+        <div class="form-group">
+            <label for="inputYear">Ano do Veículo</label>
+            <input name="Year" type="number" class="form-control" id="inputYear" placeholder="Ano do veículo">
+        </div>
+
+        <div class="form-group">
+            <label for="inputCapacity">Capacidade de Passageiros</label>
+            <input name="Capacity" type="number" class="form-control" id="inputCapacity" placeholder="Capacidade de Passageiros">
+        </div>
+
+        <div class="form-group">
+            <label for="inputCpf">CPF</label>
+            <input name="CpfDriver" maxlength="11" type="text" class="form-control" id="inputCpf" placeholder="Cpf do Motorista">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Criar</button>
+    </form>
+
+    @if (ViewBag.TheResult == true)
+    {
+        <div class="mt-5 alert alert-success">
+            <strong>Veículo</strong> cadastrado com sucesso.
+        </div>
+    }
+    else if (ViewBag.TheResult == false)
+    {
+        <div class="mt-5 alert alert-danger">
+            <strong>Erro!</strong> @ViewBag.MsgResult
+        </div>
+    }
+</div>
