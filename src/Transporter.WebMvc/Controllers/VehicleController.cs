@@ -8,10 +8,10 @@ namespace Transporter.WebMvc.Controllers
 {
     public class VehicleController : Controller
     {
-        private readonly IVehicleAppService _vehicleAppService;
+        private readonly ITransportAppService _vehicleAppService;
         private readonly IUserAppService _userAppService;
 
-        public VehicleController(IVehicleAppService vehicleAppService, IUserAppService userAppService)
+        public VehicleController(ITransportAppService vehicleAppService, IUserAppService userAppService)
         {
             _vehicleAppService = vehicleAppService;
             _userAppService = userAppService;
@@ -30,7 +30,7 @@ namespace Transporter.WebMvc.Controllers
             if (licensePlateInUse)
             {
                 ViewBag.TheResult = false;
-                ViewBag.MsgResult = "Placa dó veículo já cadastrada.";
+                ViewBag.MsgResult = "Placa do veículo já cadastrada.";
                 return View("CreateVehicle");
             }
 
@@ -51,6 +51,7 @@ namespace Transporter.WebMvc.Controllers
                 return View("CreateVehicle");
             }
 
+            ViewBag.TheResult = true;
             await _vehicleAppService.AddVehicle(vehicleViewModel);
 
             return View("CreateVehicle");

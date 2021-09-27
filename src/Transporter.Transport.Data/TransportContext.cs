@@ -11,6 +11,7 @@ namespace Transporter.Transport.Data
             ChangeTracker.LazyLoadingEnabled = false;
         }
 
-        public DbSet<Vehicle> Users { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<TransportRecord> TransportRecords { get; set; }
     }
 }

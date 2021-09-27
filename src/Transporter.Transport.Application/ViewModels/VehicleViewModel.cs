@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Transporter.Core.Enums;
 
@@ -29,5 +30,7 @@ namespace Transporter.Transport.Application.ViewModels
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string CpfDriver { get; set; }
+
+        public IEnumerable<TransportRecordViewModel> TransportRecordViewModels { get; set; }
     }
 }

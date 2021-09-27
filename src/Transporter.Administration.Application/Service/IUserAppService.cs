@@ -9,6 +9,7 @@ namespace Transporter.Administration.Application.Service
         UserViewModel FindUserByUserName(string userName);
         PersonViewModel FindPersonByCpf(string cpf);
         DriverViewModel FindDriverByPersonId(Guid personId);
+        PassengerViewModel FindPassengerByPersonId(Guid personId);
         Task AddUser(UserViewModel userViewModel);
         Task AddPassenger(PassengerViewModel userViewModel);
         Task AddDriver(DriverViewModel userViewModel);

@@ -45,6 +45,12 @@ namespace Transporter.Administration.Application.Service
             return _mapper.Map<DriverViewModel>(driver);
         }
 
+        public PassengerViewModel FindPassengerByPersonId(Guid personId)
+        {
+            var passenger = _passengerRepository.FindBy(p => p.PersonId.Equals(personId)).SingleOrDefault();
+            return _mapper.Map<PassengerViewModel>(passenger);
+        }
+
         public async Task AddUser(UserViewModel userViewModel)
         {
             userViewModel.Id = userViewModel.Id.Equals(Guid.Empty) ? Guid.NewGuid() : userViewModel.Id;

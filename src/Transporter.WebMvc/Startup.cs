@@ -37,9 +37,10 @@ namespace Transporter.WebMvc
             services.AddScoped<IPassengerRepository, PassengerRepository>();
             services.AddScoped<IDriverRepository, DriverRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<ITransportRecordRepository, TransportRecordRepository>();
 
             services.AddScoped<IUserAppService, UserAppService>();
-            services.AddScoped<IVehicleAppService, VehicleAppService>();
+            services.AddScoped<ITransportAppService, TransportAppService>();
 
             services.AddAutoMapper(typeof(AdministrationMapper));
             services.AddAutoMapper(typeof(TransportMapper));

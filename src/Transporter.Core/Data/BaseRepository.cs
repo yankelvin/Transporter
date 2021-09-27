@@ -38,6 +38,18 @@ namespace Transporter.Core.Data
             return _dbSet.Where(expression);
         }
 
+        public IQueryable<TEntity> FindByWithIncludes(Expression<Func<TEntity, bool>> query, params string[] includes)
+        {
+            var result = _dbSet.Where(query).AsQueryable();
+
+            foreach (var i in includes)
+            {
+                result = result.Include(i);
+            }
+
+            return result;
+        }
+
         public async Task<bool> SaveChanges()
         {
             foreach (var entry in _context.ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("CreatedAt") != null))

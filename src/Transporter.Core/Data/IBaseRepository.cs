@@ -12,6 +12,7 @@ namespace Transporter.Core.Data
         void Update(T entity);
         Task<T> FindById(Guid id);
         IQueryable<T> FindBy(Expression<Func<T, bool>> expression);
+        IQueryable<T> FindByWithIncludes(Expression<Func<T, bool>> query, params string[] includes);
         Task<bool> SaveChanges();
     }
 }

@@ -1,0 +1,45 @@
+﻿@{
+}
+
+<div>
+    <div class="text-center">
+        <p>Cadastrar Registro de Transporte</p>
+    </div>
+
+    <form action="RegisterTransportRecord" method="post">
+        <div class="form-group">
+            <label for="inputLicensePlate">Placa</label>
+            <input name="LicensePlate" type="text" class="form-control" id="inputLicensePlate" placeholder="Placa do veículo">
+        </div>
+
+        <div class="form-group">
+            <label for="inputTransportDate">Data do Transporte</label>
+            <input name="TransportDate" type="datetime-local" class="form-control" id="inputTransportDate" placeholder="Data do Transporte">
+        </div>
+
+        <div class="form-group">
+            <label for="inputKilometers">Kilometragem da viagem</label>
+            <input name="Kilometers" type="number" class="form-control" id="inputKilometers" placeholder="Kilometragem da viagem">
+        </div>
+
+        <div class="form-group">
+            <label for="inputCpf">CPF do Passageiro</label>
+            <input name="CpfPassenger" maxlength="11" type="text" class="form-control" id="inputCpf" placeholder="Cpf do Passageiro">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Criar</button>
+    </form>
+
+    @if (ViewBag.TheResult == true)
+    {
+        <div class="mt-5 alert alert-success">
+            <strong>Registro de transporte</strong> cadastrado com sucesso.
+        </div>
+    }
+    else if (ViewBag.TheResult == false)
+    {
+        <div class="mt-5 alert alert-danger">
+            <strong>Erro!</strong> @ViewBag.MsgResult
+        </div>
+    }
+</div>

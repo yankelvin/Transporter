@@ -36,6 +36,10 @@ namespace Transporter.Transport.Data.Mapping
             builder.Property(u => u.CpfDriver)
                 .IsRequired()
                 .HasMaxLength(11);
+
+            builder.HasMany(p => p.TransportRecords)
+                .WithOne(p => p.Vehicle)
+                .HasForeignKey(p => p.Id);
         }
     }
 }

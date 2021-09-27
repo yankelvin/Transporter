@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Transporter.Core.DomainObjects;
 using Transporter.Core.Enums;
 
@@ -13,6 +14,8 @@ namespace Transporter.Transport.Domain.Models
         public int Year { get; private set; }
         public int Capacity { get; private set; }
         public string CpfDriver { get; private set; }
+
+        public virtual ICollection<TransportRecord> TransportRecords { get; private set; }
 
         protected Vehicle() { }
 
