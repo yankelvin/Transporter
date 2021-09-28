@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Transporter.Core.Enums;
@@ -47,7 +48,7 @@ namespace Transporter.Transport.Application.Service
             await _transportRecordRepository.SaveChanges();
         }
 
-        public dynamic MakeReport(DateTime dateInit, DateTime dateEnd)
+        public ReportViewModel MakeReport(DateTime dateInit, DateTime dateEnd)
         {
             var transports = _transportRecordRepository.FindByWithIncludes(p => p.TransportDate >= dateInit && p.TransportDate <= dateEnd, "Vehicle");
 
@@ -55,11 +56,15 @@ namespace Transporter.Transport.Application.Service
             var bus = transports.Where(p => p.Vehicle.VehicleType.Equals(VehicleType.Bus));
             var vans = transports.Where(p => p.Vehicle.VehicleType.Equals(VehicleType.Van));
 
-            return new
+            return new ReportViewModel
             {
-                ReportCars = new { quantity = cars.Count(), totalValue = cars.Sum(p => p.Price) },
-                ReportBus = new { quantity = bus.Count(), totalValue = bus.Sum(p => p.Price) },
-                ReportVans = new { quantity = vans.Count(), totalValue = vans.Sum(p => p.Price) }
+                Transports = _mapper.Map<List<TransportRecordViewModel>>(transports.ToList()),
+                QuantityCars = cars.Count(),
+                TotalValueCars = cars.Sum(p => p.Price),
+                QuantityBus = bus.Count(),
+                TotalValueBus = bus.Sum(p => p.Price),
+                QuantityVans = vans.Count(),
+                TotalValueVans = vans.Sum(p => p.Price),
             };
         }
     }

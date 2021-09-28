@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Transporter.Administration.Application.Service;
 using Transporter.Transport.Application.Service;
@@ -6,6 +7,7 @@ using Transporter.Transport.Application.ViewModels;
 
 namespace Transporter.WebMvc.Controllers
 {
+    [Authorize]
     public class VehicleController : Controller
     {
         private readonly ITransportAppService _vehicleAppService;

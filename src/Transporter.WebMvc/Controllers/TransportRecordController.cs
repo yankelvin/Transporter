@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Transporter.Administration.Application.Service;
@@ -7,14 +8,15 @@ using Transporter.Transport.Application.ViewModels;
 
 namespace Transporter.WebMvc.Controllers
 {
+    [Authorize]
     public class TransportRecordController : Controller
     {
-        private readonly ITransportAppService _vehicleAppService;
+        private readonly ITransportAppService _transportAppService;
         private readonly IUserAppService _userAppService;
 
         public TransportRecordController(ITransportAppService vehicleAppService, IUserAppService userAppService)
         {
-            _vehicleAppService = vehicleAppService;
+            _transportAppService = vehicleAppService;
             _userAppService = userAppService;
         }
 
@@ -23,16 +25,25 @@ namespace Transporter.WebMvc.Controllers
             return View();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetReport(DateTime dateStart, DateTime dateEnd)
+        public IActionResult IndexReport()
         {
+            var dados = _transportAppService.MakeReport(DateTime.MinValue, DateTime.MinValue);
 
+            return View("IndexReport", dados);
+        }
+
+        [HttpPost]
+        public IActionResult GetReport(DateTime dateStart, DateTime dateEnd)
+        {
+            var dados = _transportAppService.MakeReport(dateStart, dateEnd);
+
+            return PartialView("GetReport", dados);
         }
 
         [HttpPost]
         public async Task<IActionResult> RegisterTransportRecord(TransportRecordViewModel transportRecordViewModel)
         {
-            var vehicle = _vehicleAppService.FindVehicleByLicensePlate(transportRecordViewModel.LicensePlate);
+            var vehicle = _transportAppService.FindVehicleByLicensePlate(transportRecordViewModel.LicensePlate);
 
             if (vehicle == null)
             {
@@ -60,7 +71,7 @@ namespace Transporter.WebMvc.Controllers
 
             ViewBag.TheResult = true;
             transportRecordViewModel.VehicleId = vehicle.Id;
-            await _vehicleAppService.AddTransportRecord(transportRecordViewModel);
+            await _transportAppService.AddTransportRecord(transportRecordViewModel);
 
             return View("CreateTransportRecord");
         }

@@ -1,0 +1,59 @@
+﻿@model Transporter.Transport.Application.ViewModels.ReportViewModel
+
+<div>
+    <div>
+        <span>
+            Quantidade por Carros: @Model.QuantityCars
+        </span>
+
+        <span class="ml-3">
+            Valor total arrecadado por carros: @Model.TotalValueCars
+        </span>
+    </div>
+
+    <div>
+        <span>
+            Quantidade por Onibus: @Model.QuantityBus
+        </span>
+
+        <span class="ml-3">
+            Valor total arrecadado por onibus: @Model.TotalValueBus
+        </span>
+    </div>
+
+    <div>
+        <span>
+            Quantidade por Vans: @Model.QuantityVans
+        </span>
+
+        <span class="ml-3">
+            Valor total arrecadado por Vans: @Model.TotalValueVans
+        </span>
+    </div>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Cpf do Passageiro</th>
+                <th>Placa do Veículo</th>
+                <th>Data do Transporte</th>
+                <th>Kilometragem da Viagem</th>
+                <th>Preço Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var transport in Model.Transports)
+            {
+                <tr>
+                    <td>@transport.CpfPassenger</td>
+                    <td>@transport.LicensePlate</td>
+                    <td>@transport.TransportDate</td>
+                    <td>@transport.Kilometers</td>
+                    <td>@transport.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

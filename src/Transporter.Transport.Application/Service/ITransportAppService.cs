@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Transporter.Transport.Application.ViewModels;
 
 namespace Transporter.Transport.Application.Service
@@ -8,5 +9,6 @@ namespace Transporter.Transport.Application.Service
         VehicleViewModel FindVehicleByLicensePlate(string licensePlate);
         Task AddVehicle(VehicleViewModel vehicleViewModel);
         Task AddTransportRecord(TransportRecordViewModel transportRecordViewModel);
+        ReportViewModel MakeReport(DateTime dateInit, DateTime dateEnd);
     }
 }
