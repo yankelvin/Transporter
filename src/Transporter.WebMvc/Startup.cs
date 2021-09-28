@@ -53,6 +53,15 @@ namespace Transporter.WebMvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var administrationContext = serviceScope.ServiceProvider.GetRequiredService<AdministrationContext>();
+                var transportContext = serviceScope.ServiceProvider.GetRequiredService<TransportContext>();
+
+                administrationContext.Database.Migrate();
+                transportContext.Database.Migrate();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

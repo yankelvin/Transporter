@@ -22,7 +22,7 @@ namespace Transporter.WebMvc.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //await HttpContext.SignOutAsync();
+            await HttpContext.SignOutAsync();
 
             return View();
         }
